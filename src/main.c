@@ -62,13 +62,13 @@ void processInput(GLFWwindow *window);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-const char *vertexShaderSource = "#version 460 core\n"
+const char *vertexShaderSource = "#version 400 core\n"
     "layout (location=0) in vec3 aPos;\n"
     "void main(){\n"
     "gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);"
     "}\0";
 
-const char *fragmentShaderSource = "#version 460 core\n"
+const char *fragmentShaderSource = "#version 400 core\n"
     "out vec4 FragColor;\n"
     "void main(){\n"
     "FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
@@ -109,6 +109,7 @@ int main(){
 
     if(!success){
         glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+        printf("%s\n", infoLog);
         printf("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n");
     }
 
@@ -120,6 +121,7 @@ int main(){
     glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
     if(!success){
         glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+        printf("%s\n", infoLog);
         printf("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n");
     }
 

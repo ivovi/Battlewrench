@@ -14,7 +14,7 @@
             "args": [
                 "..",
                 "-G",
-                "'MinGW Makefiles'"
+                "\"MinGW Makefiles\""
             ],
             "options": {
                 "cwd": "${workspaceFolder}/build"
