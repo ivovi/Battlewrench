@@ -11,7 +11,7 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(lib/glfw)
 include_directories(glad)
 
-set(SOURCE_FILES src/main.c)
+set(SOURCE_FILES src/Battlewrench/GameLauncher.c)
 
 add_executable(engine
     ${SOURCE_FILES}
