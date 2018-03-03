@@ -11,7 +11,7 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(lib/glfw)
 include_directories(glad)
 
-set(SOURCE_FILES src/Battlewrench/GameLauncher.c src/Shaders/Shaders.c src/Shaders/Shaders.h)
+set(SOURCE_FILES src/Battlewrench/GameLauncher.c src/Shaders/Shaders.c src/Shaders/Shaders.h src/Util/Util.c src/Util/Util.h)
 
 add_executable(engine
     ${SOURCE_FILES}

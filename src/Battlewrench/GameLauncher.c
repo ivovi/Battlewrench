@@ -12,76 +12,14 @@
 
 //Include custom headers
 #include "../Shaders/Shaders.h"
-
-//function to read files and return their contents as a string
-/*
-static char* readFile(const char* filename) {
-    //open a file
-    FILE *fp;
-    fp = fopen(filename, "r");
-
-    //move the file pointer to the end of the file and determine it's length
-    fseek(fp, 0, SEEK_END);
-    long file_length = ftell(fp);
-
-    fseek(fp, 0, SEEK_SET);
-    char* contents = malloc(sizeof(contents[0]) * (file_length + 1));
-
-    //zero memory
-    for (int i=0; i < file_length + 1; i++){
-        contents[i] = 0;
-    }
-    //read the file
-    fread(contents, 1, file_length, fp);
-
-    //add end of string
-    contents[file_length + 1] = '\0';
-    fclose(fp);
-
-    return contents;
-}
-*/
-
-/*
-GLunit LoadShaders(const char* vertexFilePath, const char* fragmentFilePath){
-
-    GLunit VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
-    GLunit FragmenShaderID = glCreateShader(GL_FRAGMENT_SHADER);
-
-    char* VertexShaderCode = readFile("SimpleVertexShader.fsh");
-    char* FragmentShaderCode = readFile("simpleVertexShader.vsh");
-
-    glShaderSource(VertexShaderID, 1, &VertexShaderCode, NULL);
-
-    return 0;
-}
-*/
+#include "../Util/Util.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
-
-const char *vertexShaderSource = "#version 400 core\n"
-    "layout (location=0) in vec3 aPos;\n"
-    "layout (location=1) in vec3 aColor;\n"
-    "out vec3 ourColor;\n"
-    "void main(){\n"
-    "gl_Position = vec4(aPos, 1.0);\n"
-    "ourColor = aColor;\n"
-    "}\0";
-
-const char *fragmentShaderSource = "#version 400 core\n"
-    "out vec4 FragColor;\n"
-    "in vec3 ourColor;\n"
-    "void main(){\n"
-    "FragColor = vec4(ourColor, 1.0);\n"
-    "}\0";
-
-   
 int main(){
 
+    printf("STARTING!!!!!\n");
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
@@ -101,6 +39,8 @@ int main(){
         return 1;
     }
 
+    const char* vertexShaderSource = readFileToString(VERTEX_SHADER_PATH);
+    const char* fragmentShaderSource = readFileToString(FRAGMENT_SHADER_PATH);
     unsigned int shaderProgram = loadShaders(vertexShaderSource, fragmentShaderSource);
 
     if(shaderProgram == -1) {
